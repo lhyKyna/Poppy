@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,body {
+				background-color: #efeff4;
+			}
+			.mui-content{
+				width: 100vw;
+				height: 100vh;
+				background: url(img/img/shakebg_02.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			#chuai{
+				width: 90vw;
+				height: 7vh;
+				position: absolute;
+				bottom: 21vh;
+				left: 5vw;
+				font-size: 3.5vh;
+			}
+			#fu{
+				width: 90vw;
+				height: 7vh;
+				position: absolute;
+				bottom: 12vh;
+				left: 5vw;
+				font-size: 3.5vh;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<!--<p>
+			恭喜你获得流量，开心吗？？
+		</p>-->
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title" id="title">流量</h1>
+		</header>
+		<div class="mui-content">
+		    <button class="mui-btn-danger" id="chuai">揣兜里</button>
+		    <button class="mui-btn-danger" id="fu">福利社</button>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

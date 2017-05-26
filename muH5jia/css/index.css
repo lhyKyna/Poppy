@@ -1,0 +1,14 @@
+body,header.mui-bar{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	overflow: hidden;
+	height: 100%;
+	background: none;
+	box-shadow: none;
+}
+
+body, ul ,li ,a {
+	transition: all 1s;
+}

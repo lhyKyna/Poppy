@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<style>
+			html,body {
+				background-color: #efeff4;
+			}
+			.title{
+				margin:0;
+				color: #6d6d72;
+				font-size: 15px;
+				width: 100%;
+				height: 50vh;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">设置</h1>
+		</header>-->
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper">
+			    <div class="mui-scroll">
+			        <div class="title">
+				
+			</div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="getPhoto">
+						拍照上传图片
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="removeImgUrl">
+						删除背景图片
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						新消息通知
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						隐私
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						通用
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="night">
+						关灯模式
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view" style="margin-top: 25px;">
+				<li class="mui-table-view-cell">
+					<a id="about" class="mui-navigate-right">
+						关于mui
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view" style="margin-top: 25px;">
+				<li class="mui-table-view-cell">
+					<a style="text-align: center;color: #FF3B30;">
+						退出登录
+					</a>
+				</li>
+			</ul>
+			    </div>
+			</div>
+			
+			
+		</div>
+		</style>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		
+		document.addEventListener("plusready",plusReady,false)
+		function plusReady(){
+			if(localStorage){
+				mui(".title")[0].style.background="url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496202022&di=003e8666e82aea4640f2aa4073335f94&imgtype=jpg&er=1&src=http%3A%2F%2Fresource.58game.com%2Fuploads%2Ftuku%2Fthumb%2F20160126%2F56a6d7ba3896f.jpg) no-repeat";
+				mui(".title")[0].style.backgroundSize="100%";
+				mui("body")[0].style.background=localStorage.night;
+ 				mui(".mui-table-view-cell").each(function(index,item){
+// 					console.log(item)
+   					item.style.background=localStorage.night;
+ 				})
+ 				mui("body")[0].style.color = localStorage.fontColor;
+   				mui(".mui-navigate-right").each(function(index,item){
+   					item.style.color = localStorage.fontColor;
+   				})
+			}
+		}
+		
+		document.getElementById("about").addEventListener('tap',function () {
+			//获得主页面的webview
+			var main = plus.webview.currentWebview().parent();
+			//触发主页面的gohome事件
+			mui.fire(main,'gohome');
+		});
+		
+		var getPhoto = document.querySelector("#getPhoto");
+		getPhoto.addEventListener("tap",function(){
+			var cmr = plus.camera.getCamera(); // 获取拍照的方法
+			var res = cmr.supportedImageResolutions[0]; // 拍照支持的分辨率
+			var fmt = cmr.supportedImageFormats[0]; //拍照支持的格式，默认jpg index 摄像头
+			cmr.captureImage( function( path ){
+						console.log(localStorage.Imgurl)
+						plus.io.resolveLocalFileSystemURL(path,function(entry){
+							var path = entry.toLocalURL() // 转换成可以读取的路径
+							mui(".title")[0].style.background="url("+ path +") no-repeat";
+							mui(".title")[0].style.backgroundSize="100%";
+							localStorage.ImgUrl = path;
+						})
+				},
+				function( error ) {
+					alert( "Capture image failed: " + error.message );
+				},
+				{resolution:res,format:fmt,index:1}
+			);
+		})
+		
+		mui(".mui-scroll-wrapper").scroll({
+			 deceleration:0.0006,
+		})
+		
+		var scrollBox = mui("body")[0];
+		scrollBox.addEventListener("touchmove",function(){
+			mui(".title")[0].style.transform = "scale(1.5)"
+			mui(".title")[0].style.transition =" all .5s"
+		})
+		scrollBox.addEventListener("touchend",function(){
+			
+			mui(".title")[0].style.transform = "scale(1)"
+			mui(".title")[0].style.transition =" all .5s"
+		})
+		
+		var removeImgUrl = document.querySelector("#removeImgUrl");
+		removeImgUrl.addEventListener("tap",function(){
+			localStorage.removeItem("ImgUrl");
+			mui(".title")[0].style.background="url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496202022&di=003e8666e82aea4640f2aa4073335f94&imgtype=jpg&er=1&src=http%3A%2F%2Fresource.58game.com%2Fuploads%2Ftuku%2Fthumb%2F20160126%2F56a6d7ba3896f.jpg) no-repeat";
+			mui(".title")[0].style.backgroundSize="100%";
+		})
+		
+		var night = document.querySelector("#night");
+		night.addEventListener("tap",function(){
+ 				var rgb = "#000";
+ 				localStorage.night = rgb;
+ 				localStorage.fontColor = "#fff"
+// 				mui("header")[0].style.background=localStorage.night;
+// 				mui("nav")[0].style.background=localStorage.night;
+ 				mui("body")[0].style.background=localStorage.night;
+ 				mui(".mui-table-view-cell").each(function(index,item){
+// 					console.log(item)
+   					item.style.background=localStorage.night;
+ 				})
+ 				mui("body")[0].style.color = localStorage.fontColor;
+   				mui(".mui-navigate-right").each(function(index,item){
+   					item.style.color = localStorage.fontColor;
+   				})
+ 				
+		})
+	</script>
+</html>

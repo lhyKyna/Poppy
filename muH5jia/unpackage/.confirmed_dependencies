@@ -1,0 +1,81 @@
+{
+	"tab-webview-subpage-about.html": {
+		"resources": [
+			"img/img/psb (1).jpg",
+			"js/mui.min.js",
+			"img/img/p.jpg",
+			"img/img/joe.jpg",
+			"img/img/bg.jpg"
+		],
+		"refer": []
+	},
+	"index.html": {
+		"resources": [
+			"tab-webview-subpage-about.html",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.js",
+			"about.html"
+		],
+		"refer": [
+			"tab-webview-subpage-about.html",
+			"tab-webview-subpage-setting.html",
+			"tab-webview-subpage-chat.html",
+			"tab-webview-subpage-contact.html",
+			"contact.html",
+			"setting.html",
+			"about.html",
+			"chat.html"
+		]
+	},
+	"about.html": {
+		"resources": [
+			"img/img/psb (1).jpg",
+			"js/mui.min.js",
+			"img/img/p.jpg",
+			"img/img/joe.jpg",
+			"img/img/bg.jpg"
+		],
+		"refer": []
+	},
+	"contact.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"audio/��G\u0000G�H.mp3",
+			"audio/��G\u0000G�H.mp3",
+			"img/img/homebg_02.png",
+			"audio/微信摇一摇音效.mp3",
+			"img/img/menubg_06.png",
+			"audio/yao.mp3",
+			"img/img/menubg.png"
+		],
+		"refer": [
+			"shake.html"
+		]
+	},
+	"chat.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": []
+	},
+	"shake.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"img/img/shakebg_02.png",
+			"fonts/mui.ttf"
+		]
+	},
+	"setting.html": {
+		"resources": [
+			"css/index.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	}
+}
